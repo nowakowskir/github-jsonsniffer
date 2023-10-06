@@ -81,15 +81,11 @@ async function run() {
                         timeout: 10000,
                     }
                 ).on('exit', async (code) => {
-                    console.log('child exit code (spawn)', file, code);
-
+                    console.log(`${path.relative(process.cwd(), file)}`);
                     console.log(
-                        '  %d:%d  %s  %s  %s',
-                        1,
-                        1,
+                        '  %s  %s',
                         'error',
                         'There was a problem parsing this JSON file',
-                        ''
                     );
 
                     if (code != 0) {
