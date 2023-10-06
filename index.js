@@ -81,7 +81,7 @@ async function run() {
                         timeout: 10000,
                     }
                 ).on('exit', async (code) => {
-                    console.log(`${path.relative(process.cwd(), file)}`);
+                    console.log(`${path.relative(process.cwd(), file)}` + ': There was a problem parsing this JSON file');
                     // console.log(
                     //     '  %s  %s',
                     //     'error',

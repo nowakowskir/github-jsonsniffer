@@ -5,9 +5,9 @@
       "severity": "error",
       "pattern": [
         {
-          "regexp": "^([^\\s].*)$",
+          "regexp": "^([^\\s].*):\\s+(.*)$",
           "file": 1,
-          "message": "Error parsing this JSON file"
+          "message": 2
         }
       ]
     }
