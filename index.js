@@ -89,7 +89,7 @@ async function run() {
                         1,
                         'error',
                         'There was a problem parsing this JSON file',
-                        message.source
+                        ''
                     );
 
                     if (code != 0) {
