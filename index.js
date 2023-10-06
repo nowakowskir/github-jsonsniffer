@@ -81,14 +81,9 @@ async function run() {
                         timeout: 10000,
                     }
                 ).on('exit', async (code) => {
-                    console.log(`${path.relative(process.cwd(), file)}` + ': There was a problem parsing this JSON file');
-                    // console.log(
-                    //     '  %s  %s',
-                    //     'error',
-                    //     'There was a problem parsing this JSON file',
-                    // );
-
                     if (code != 0) {
+                        console.log(`${path.relative(process.cwd(), file)}` + ': There was a problem parsing this JSON file');
+
                         core.setFailed('There was a problem parsing JSON file: ' + file);
                     }
                 });
