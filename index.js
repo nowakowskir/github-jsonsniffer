@@ -81,7 +81,17 @@ async function run() {
                         timeout: 10000,
                     }
                 ).on('exit', async (code) => {
-                    console.log('child exit code (spawn)', code);
+                    console.log('child exit code (spawn)', file, code);
+
+                    console.log(
+                        '  %d:%d  %s  %s  %s',
+                        1,
+                        1,
+                        'error',
+                        'There was a problem parsing this JSON file',
+                        message.source
+                    );
+
                     if (code != 0) {
                         core.setFailed('There was a problem parsing JSON file: ' + file);
                     }
