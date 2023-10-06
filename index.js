@@ -40,7 +40,7 @@ async function run() {
         const matchersPath = path.join(__dirname, '.', '.github');
 
         console.log(
-            `##[add-matcher]${path.join(matchersPath, 'phpcs-matcher.json')}`
+            `##[add-matcher]${path.join(matchersPath, 'jsonsniffer-matcher.json')}`
         );
 
         for await (const line of lines) {

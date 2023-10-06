@@ -19,5 +19,5 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: nowakowskir/github-phpcs@v6
+      - uses: nowakowskir/github-jsonsniffer@v6
 ```
