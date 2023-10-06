@@ -80,20 +80,22 @@ async function run() {
                         windowsHide: true,
                         timeout: 10000,
                     }
-                ).on('exit', (code) => {
+                ).on('exit', async (code) => {
                     console.log('child exit code (spawn)', code);
 
-                    core.setFailed('Invalid JSON file: ' + file);
+                    if (code !== 0) {
+                        const lines = createInterface({
+                            input: validationProcess.stdout,
+                        });
+
+                        for await (const line of lines) {
+                            console.log(line);
+                        }
+
+                        core.setFailed('Invalid JSON file: ' + file);
+                    }
                 });
 
-                // const lines = createInterface({
-                //     input: validationProcess.stdout,
-                // });
-                //
-                // for await (const line of lines) {
-                //     console.log('Line: ');
-                //     console.log(line);
-                // }
             }
         }
 
