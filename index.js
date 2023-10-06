@@ -67,12 +67,29 @@ async function run() {
             return;
         }
 
-        // if (affectedFiles.added.length > 0) {
-        //
-        // }
+        if (affectedFiles.added.length > 0) {
+            for (const file of affectedFiles.added) {
+                const validationProcess = spawn('jq',
+                    [
+                        '.',
+                        file
+                    ],
+                    {
+                        windowsHide: true,
+                        timeout: 10000,
+                    }
+                );
 
-        console.log(affectedFiles.added);
-        console.log(affectedFiles.modified);
+                const lines = createInterface({
+                    input: validationProcess.stdout,
+                });
+
+                for await (const line of lines) {
+                    console.log(line);
+                }
+            }
+        }
+
     } catch (error) {
         core.setFailed(error.message);
     }
