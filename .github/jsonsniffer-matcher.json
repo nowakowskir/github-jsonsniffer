@@ -3,11 +3,11 @@
     {
       "owner": "jsonsniffer",
       "severity": "error",
-      "message": "Error parsing this JSON file",
       "pattern": [
         {
           "regexp": "^([^\\s].*)$",
-          "file": 1
+          "file": 1,
+          "message": "Error parsing this JSON file"
         }
       ]
     }
