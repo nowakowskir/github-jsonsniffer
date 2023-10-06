@@ -80,16 +80,18 @@ async function run() {
                         windowsHide: true,
                         timeout: 10000,
                     }
-                );
-
-                const lines = createInterface({
-                    input: validationProcess.stdout,
+                ).on('exit', (code) => {
+                    console.log('child exit code (spawn)', code);
                 });
 
-                for await (const line of lines) {
-                    console.log('Line: ');
-                    console.log(line);
-                }
+                // const lines = createInterface({
+                //     input: validationProcess.stdout,
+                // });
+                //
+                // for await (const line of lines) {
+                //     console.log('Line: ');
+                //     console.log(line);
+                // }
             }
         }
 
