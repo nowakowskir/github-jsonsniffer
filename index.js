@@ -82,11 +82,11 @@ async function run() {
                     }
                 ).on('exit', async (code) => {
                     console.log(`${path.relative(process.cwd(), file)}`);
-                    console.log(
-                        '  %s  %s',
-                        'error',
-                        'There was a problem parsing this JSON file',
-                    );
+                    // console.log(
+                    //     '  %s  %s',
+                    //     'error',
+                    //     'There was a problem parsing this JSON file',
+                    // );
 
                     if (code != 0) {
                         core.setFailed('There was a problem parsing JSON file: ' + file);
