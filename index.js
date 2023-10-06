@@ -82,6 +82,8 @@ async function run() {
                     }
                 ).on('exit', (code) => {
                     console.log('child exit code (spawn)', code);
+
+                    core.setFailed('Invalid JSON file: ' + file);
                 });
 
                 // const lines = createInterface({
