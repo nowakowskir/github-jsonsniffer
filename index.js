@@ -69,6 +69,8 @@ async function run() {
 
         if (affectedFiles.added.length > 0) {
             for (const file of affectedFiles.added) {
+                console.log('Checking file: ' + file);
+
                 const validationProcess = spawn('jq',
                     [
                         '.',
@@ -85,6 +87,7 @@ async function run() {
                 });
 
                 for await (const line of lines) {
+                    console.log('Line: ');
                     console.log(line);
                 }
             }
