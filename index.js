@@ -82,17 +82,8 @@ async function run() {
                     }
                 ).on('exit', async (code) => {
                     console.log('child exit code (spawn)', code);
-
-                    if (code !== 0) {
-                        const lines = createInterface({
-                            input: validationProcess.stdout,
-                        });
-
-                        for await (const line of lines) {
-                            console.log(line);
-                        }
-
-                        core.setFailed('Invalid JSON file: ' + file);
+                    if (code != 0) {
+                        core.setFailed('There was a problem parsing JSON file: ' + file);
                     }
                 });
 
