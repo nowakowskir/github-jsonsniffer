@@ -32,6 +32,8 @@ async function run() {
             input: diffProcess.stdout,
         });
 
+        console.log(diffProcess.stdout);
+
         const affectedFiles = {
             added: [],
             modified: [],
