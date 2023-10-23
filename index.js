@@ -46,6 +46,8 @@ async function run() {
         );
 
         for await (const line of lines) {
+            console.log('--------------');
+            console.log(line);
             const parsed = /^(?<status>[ACMR])[\s\t]+(?<file>\S+)$/.exec(line);
             if (parsed.groups) {
                 const { status, file } = parsed.groups;
