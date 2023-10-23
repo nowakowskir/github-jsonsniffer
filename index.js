@@ -32,8 +32,6 @@ async function run() {
             input: diffProcess.stdout,
         });
 
-        console.log(diffProcess.stdout);
-
         const affectedFiles = {
             added: [],
             modified: [],
@@ -46,7 +44,6 @@ async function run() {
         );
 
         for await (const line of lines) {
-            console.log('--------------');
             console.log(line);
             const parsed = /^(?<status>[ACMR])[\s\t]+(?<file>\S+)$/.exec(line);
             if (parsed.groups) {
@@ -95,6 +92,29 @@ async function run() {
             }
         }
 
+        if (affectedFiles.modified.length > 0) {
+            for (const file of affectedFiles.modified) {
+                console.log('Checking file: ' + file);
+
+                const validationProcess = spawn('jq',
+                    [
+                        '.',
+                        file
+                    ],
+                    {
+                        windowsHide: true,
+                        timeout: 10000,
+                    }
+                ).on('exit', async (code) => {
+                    if (code != 0) {
+                        console.log(`${path.relative(process.cwd(), file)}` + ': There was a problem parsing this JSON file');
+
+                        core.setFailed('There was a problem parsing JSON file: ' + file);
+                    }
+                });
+
+            }
+        }
     } catch (error) {
         core.setFailed(error.message);
     }
